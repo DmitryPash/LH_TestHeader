@@ -1,130 +1,45 @@
-const autoPrefixer = require("gulp-autoprefixer");
+import gulp from 'gulp'; // Основной модуль
+import { path } from './gulp/config/path.js'; // Импорт путей
 
-let dist = "dist",
-  app = "app";
-
-let path = {
-  build: {
-    html: dist + "/",
-    css: dist + "/css/",
-    js: dist + "/js/",
-    images: dist + "/images/",
-    popups: dist + "/popups/",
-    // fonts: dist + "/fonts/"
-  },
-  src: {
-    html: app + "/*.html",
-    css: app + "/css/*.scss",
-    js: app + "/js/*.js",
-    images: app + "/images/**/*.{jpg,png,svg,gif,ico,webp}",
-    popups: app + "/popups/*.html",
-    // fonts: app + "/fonts/*.ttf"
-  },
-  watch: {
-    html: app + "/**/*.html",
-    css: app + "/css/**/*.scss",
-    js: app + "/js/**/*.js",
-    images: app + "/images/**/*.{jpg,png,svg,gif,ico,webp}",
-    popups: app + "/popups/*.html",
-  },
-  clean: "./" + dist + "/",
-};
-
-let { src, dest } = require("gulp"),
-  gulp = require("gulp"),
-  browsersync = require("browser-sync").create(),
-  fileinclude = require("gulp-file-include"),
-  scss = require("gulp-sass")(require("sass")),
-  gcmq = require("gulp-group-css-media-queries"),
-  svgSprite = require("gulp-svg-sprite"),
-  autoprefixer = require("gulp-autoprefixer");
-
-function browserSync(params) {
-  browsersync.init({
-    server: {
-      baseDir: "./" + dist + "/",
-    },
-    port: 3000,
-    notify: false,
-  });
+// Глобальная переменная в которую передаем значения
+global.app = {
+  path: path,
+  gulp: gulp,
 }
 
-function html() {
-  return src(path.src.html)
-    .pipe(fileinclude())
-    .pipe(dest(path.build.html))
-    .pipe(browsersync.stream());
+// Импорт задач
+import { reset } from "./gulp/tasks/reset.js";
+import { html } from "./gulp/tasks/html.js";
+import { scss } from "./gulp/tasks/scss.js";
+import { js } from "./gulp/tasks/js.js";
+import { img } from "./gulp/tasks/img.js";
+import { svg } from "./gulp/tasks/svgSprite.js";
+import { htaccess } from "./gulp/tasks/htaccess.js";
+import { otfToTtf, ttfToWoff, fonstStyle } from "./gulp/tasks/fonts.js";
+
+function watcher() {
+  gulp.watch(path.watch.html, html);
+  gulp.watch(path.watch.scss, scss);
+  gulp.watch(path.watch.js, js);
+  gulp.watch(path.watch.img, img);
+  gulp.watch(path.watch.svg, svg);
 }
 
-function css() {
-  return src(path.src.css)
-    .pipe(
-      scss({
-        outputStyle: "expanded",
-      })
-    )
-    .pipe(
-      autoprefixer({
-        cascade: true,
-        overrideBrowserslist: ["last 5 version"],
-      })
-    )
-    .pipe(gcmq())
-    .pipe(dest(path.build.css))
-    .pipe(browsersync.stream());
-}
+const fonts = gulp.series(otfToTtf, ttfToWoff, fonstStyle); // Последовательная обработака шрифтов
+const svgSprite = gulp.series(svg);
 
-function js() {
-  return src(path.src.js)
-    .pipe(fileinclude())
-    .pipe(dest(path.build.js))
-    .pipe(browsersync.stream());
-}
+// базовые задачи
+const baseTasks = gulp.parallel(html, scss, js, img)
 
-function images() {
-  return src(path.src.images)
-    .pipe(dest(path.build.images))
-    .pipe(browsersync.stream());
-}
-function popups() {
-  return src(path.src.popups)
-    .pipe(fileinclude())
-    .pipe(dest(path.build.popups))
-    .pipe(browsersync.stream());
-}
+// @task: + fonts.js
+// const baseTasks = gulp.series(fonts, gulp.parallel(html, scss, js, img, svg))
 
-gulp.task("svgSprite", function () {
-  return gulp
-    .src([dist + "/iconsprite/*.svg"])
-    .pipe(
-      svgSprite({
-        mode: {
-          stack: {
-            sprite: "../icons/icons.svg",
-            example: true,
-          },
-        },
-      })
-    )
-    .pipe(dest(path.build.images));
-});
+// @task: + svgSprite.js
+// const baseTasks = gulp.series(svgSprite, gulp.parallel(html, scss, js, img, svg))
 
-function watchFiles() {
-  gulp.watch([path.watch.html], html);
-  gulp.watch([path.watch.css], css);
-  gulp.watch([path.watch.js], js);
-  gulp.watch([path.watch.images], images);
-  gulp.watch([path.watch.popups], popups);
-}
+// @task: fonts.js + svgSprite.js
+// const baseTasks = gulp.series(fonts, svgSprite, gulp.parallel(html, scss, js, img, svg))
 
-let build = gulp.series(gulp.parallel(js, css, html, images, popups));
-let watch = gulp.parallel(build, watchFiles, browserSync);
+const dev = gulp.series(reset, htaccess, baseTasks, watcher)
 
-exports.images = images;
-exports.js = js;
-exports.css = css;
-exports.html = html;
-exports.build = build;
-exports.watch = watch;
-exports.default = watch;
-exports.popups = popups;
+gulp.task('default', dev);
