@@ -3,13 +3,17 @@
 
 <head>
    <meta charset="utf-8" />
-   <title>INDEED</title>
-   <meta name="keywords" content="Endeed" />
-   <meta name="description" content="Endeed" />
+   <title>LH</title>
+   <meta name="keywords" content="Lh" />
+   <meta name="description" content="Lh" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <meta name="format-detection" content="telephone=no" />
 
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jQueryFormStyler/2.0.2/jquery.formstyler.css" integrity="sha512-nLc0o1DsGCs4DTHp1hN+CV+1Te8iRuiGCB3UK6JQYcjijK8umkX4PSOdt1iJGvNZoC4GEVfnsg5r7KWxLNMoMA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -17,20 +21,169 @@
 <body>
    <div class="wrapper" id="wrapper">
       <header class="header">
-   header
+   <div class="container">
+      <div class="header-section">
+         <a href="#" class="header-logo">
+            <div class="header-logo-img">
+               <img src="./images/icon/Logo.svg" alt="alt">
+            </div>
+            <div class="header-logo-txt">
+               магазин инструмента
+            </div>
+         </a>
+         <div class="header-menu flex space-between">
+            <ul>
+               <li><a href="#">Каталог инструментов</a></li>
+               <li><a href="#">Все для сада</a></li>
+               <li><a href="#">Ручной интрумент</a></li>
+               <li><a href="#">Электрика</a></li>
+               <li><a href="#">Доставка</a></li>
+               <li><a href="#">Оплата</a></li>
+               <li><a href="#">О нас</a></li>
+            </ul>
+            <div class="header-menu-reg flex">
+               <a href="javascript:void(0)" class="header-menu-reg-enter">
+                  Вход
+               </a>
+               <a href="javascript:void(0)" class="header-menu-reg-registration">
+                  Регистрация
+               </a>
+            </div>
+         </div>
+         <div class="header-main flex space-between">
+            <a href="#" class="header-main-banner">
+            </a>
+            <div class="header-main-list flex space-between">
+                     <div class="header-main-list-wrap">
+
+                        <a href="#" class="header-main-list-link link-styles">
+                           <img src="./images/icon/Header-cart.svg" alt="alt" >
+                         <span>3 шт.</span> / <span>17 250 р.</span></a>
+                     </div>
+                     <div class="header-main-list-wrap">
+
+                        <a href="#" class="header-main-list-link favor-styles">
+                           <img src="./images/icon/Header-Star.svg" alt="alt" class="icon-fix">
+                           Избранное <span>(7)</span></a>
+                     </div>
+                     <div class="header-main-list-wrap">
+
+                        <a href="#" class="header-main-list-link balance-styles">
+                           <img src="./images/icon/Header-balance.svg" alt="alt"  class="icon-fix">
+                           К сравнению <span>(5)</span></a>
+                     </div>
+            </div>
+            <div class="header-main-carts flex">
+               <a href="#" class="header-main-carts-item">
+                  <img src="./images/Header-item1.png" alt="alt">
+               </a>
+               <a href="#" class="header-main-carts-item">
+                  <img src="./images/Header-item2.png" alt="alt">
+               </a>
+               <a href="#" class="header-main-carts-item">
+                  <img src="./images/Header-item3.png" alt="alt">
+               </a>
+            </div>
+            <div class="header-main-contacts">
+               <div class="header-main-contacts-time flex space-between">
+                  <span>Время работы:</span>
+                  <span>10:00 — 19:00</span>
+               </div>
+               <a href="tel:84957212525" class="header-main-contacts-number">
+                  8 495 721-25-25
+               </a>
+               <div class="header-main-contacts-city flex space-between">
+                  <div class="header-main-contacts-name">Москва</div>
+                  <div class="header-main-contacts-change">
+                     <img src="./images/icon/Header-arrow.svg" alt="alt" class="header-main-contacts-city-img">
+                   <select id="changeCity">
+                     <option class="change-city" value="Выберите город">сменить</option>
+                     <option class="change-city" value="Москва">Москва</option>
+                     <option class="change-city" value="СПБ">СПБ</option>
+                     <option class="change-city" value="Минск">Минск</option>
+                   </select>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="header-nav flex space-between">
+         <form action="">
+            <input type="text" class="header-nav-input" placeholder="Поиск...">
+            <button class="header-nav-search" href="#">
+               <img src="./images/icon/search-icon.svg" alt="alt">
+            </button>
+         </form>
+         <div class="header-nav-wrap flex">
+            <a href="#" class="header-nav-item header-nav-item-active">Перфораторы</a>
+            <a href="#" class="header-nav-item">Дрели</a>
+            <a href="#" class="header-nav-item">Шлифмашины</a>
+            <a href="#" class="header-nav-item">Пистолеты</a>
+            <a href="#" class="header-nav-item">Электропилы</a>
+            <a href="#" class="header-nav-item">Наборы инструментов</a>
+            <a href="#" class="header-nav-item">Акксесуары</a>
+         </div>
+
+         <a href="#" class="header-nav-sale">
+            распродажа
+         </a>
+
+      </div>
+      <div class="header-mob valign-center">
+         <div class="header-mob-logo">
+            <img src="./images/icon/Logo.svg" alt="alt">
+         </div>
+
+         <div class="header-mob-wrap flex">
+            <a href="#" class="header-mob-cart">
+               <img src="./images/icon/Header-mob-cert.svg" alt="alt">
+            </a>
+            <a href="#" class="header-mob-cart">
+               <img src="./images/icon/Header-mob-star.svg" alt="alt">
+            </a>
+            <a href="#" class="header-mob-cart">
+               <img src="./images/icon/Header-mob-balance.svg" alt="alt">
+            </a>
+            <a href="tel:1234123" class="header-mob-cart">
+               <img src="./images/icon/Header-mob-phone.svg" alt="alt">
+            </a>
+         </div>
+
+         <div class="header-mob-toggle"></div>
+
+         <div class="header-mob-menu">
+            <ul>
+               <li><a href="#">Перфораторы</a></li>
+               <li><a href="#">Дрели</a></li>
+               <li><a href="#">Шлифмашины</a></li>
+               <li><a href="#">Пистолеты</a></li>
+               <li><a href="#">Электропилы</a></li>
+               <li><a href="#">Наборы инструментов</a></li>
+               <li><a href="#">Акксесуары</a></li>
+
+            </ul>
+            <form action="">
+               <input type="text" class="header-mob-nav-input" placeholder="Поиск...">
+               <button class="header-mob-nav-search" href="#">
+                  <img src="./images/icon/search-icon.svg" alt="alt">
+               </button>
+            </form>
+         </div>
+      </div>
+   </div>
 </header>
       <div class="middle" id="middle">
 
       </div>
       <footer class="footer" id="footer">
-  footer
 </footer>
    </div>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js
-"></script>
-<script src="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js"></script>
-<script src="https://unpkg.com/imask"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jQueryFormStyler/2.0.2/jquery.formstyler.min.js"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
 <script src="./js/main.js"></script>
 </body>
 

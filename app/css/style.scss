@@ -1,14 +1,11 @@
 @import "grid";
 @import "UI";
-@import "media";
 @import "header";
 
 
-$ffLexend: "Lexend", sans-serif;
-$colorBlack: #20233e;
-$colorSilver: #8b8d9b;
-$colorOrange: #eba544;
-$colorBlue: #3c50e0;
+$ffRoboto: "Roboto", sans-serif;
+$colorBlack: #252525;
+$colorYellow: #FFCC00;
 
 // Mixin
 $html-font-size: 16px;
@@ -36,11 +33,11 @@ html {
 body {
   height: 100%;
   min-height: 100%;
-  font-family: $ffLexend;
+  font-family: $ffRoboto;
   font-weight: 400;
   font-size: rem(16px);
-  // line-height: 1.42;
-  color: $colorSilver;
+  line-height: 1.42;
+  color: $colorBlack;
   background-color: #ffffff;
 }
 
