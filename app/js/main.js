@@ -1,22 +1,27 @@
 
 jQuery(document).ready(function($){
+// Кастомный селект выподающего меню
     $("select").styler();
 // Выпадающие меню
     $('.change-city').on('change', (e) => {
         $('.header-main-contacts-name').text(e.target.value)
     })
-// Открытие поиска
-    $('.header-nav-search').on('click', () => {
-        $('.header-nav-search').toggleClass('header-nav-search-open')
-        $('.header-nav-input').animate({
-            width: "toggle"
-        });
+// Поиск
+    let headerNavSearch = document.querySelector('.header-nav-search'),
+    headerNavInput = document.querySelector('.header-nav-input');
+    headerNavSearch.addEventListener('click', () => {
+        event.preventDefault();
+        headerNavInput.classList.toggle('header-nav-input-open')
+        headerNavSearch.classList.toggle('header-nav-search-open')
     })
 // Мобильное меню
-    $('.header-mob-toggle').on('click',() => {
-        $('.header-mob-menu').toggleClass('header-mob-menu-open')
-        $('.header-mob-toggle').toggleClass('header-mob-toggle-open')
-    })
+    let headerMobToggle = document.querySelector('.header-mob-toggle'),
+        headerMobMenu = document.querySelector('.header-mob-menu');
+        headerMobToggle.addEventListener('click', () => {
+            event.preventDefault();
+            headerMobToggle.classList.toggle('header-mob-toggle-open')
+            headerMobMenu.classList.toggle('header-mob-menu-open')
+        })
 })
 
 

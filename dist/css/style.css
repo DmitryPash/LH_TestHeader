@@ -507,6 +507,10 @@ textarea {
   background: #FFCC00;
 }
 
+.header-nav-input-open {
+  display: block;
+}
+
 .header-nav-search {
   height: 100%;
   width: 40px;
